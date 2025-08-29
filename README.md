@@ -24,6 +24,7 @@ FastAPI + MySQL (Docker) + HTTP Basic Auth
    DB_NAME=atk
    ```
 3. Если нужно отредактируйте начальные данные в init.sql
+   И не забудьте поменять пароли в .env и в docker-compose на более надежные 
 
 ## ▶️ Запуск
 
