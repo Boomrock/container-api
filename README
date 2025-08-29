@@ -1,0 +1,63 @@
+# 📦 Container Tracking API
+
+FastAPI + MySQL (Docker) + HTTP Basic Auth
+
+---
+
+## 🔧 Перед запуском
+0.5 Перед началом работы советую создать venv 
+    ```bash
+    python -m venv containervenv
+    containervenv\Scripts\activate
+    ```
+1. Установите зависимости:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. Создайте `.env`:
+   ```env
+   DB_HOST=db
+   DB_PORT=3306
+   DB_USER=atkuser
+   DB_PASSWORD=atkpass
+   DB_NAME=atk
+   ```
+3. Если нужно отредактируйте начальные данные в init.sql
+
+## ▶️ Запуск
+
+1. Запустите MySQL:
+   ```bash
+   docker-compose up -d
+   ```
+2. Запустите API:
+   ```bash
+   python main.py
+   ```
+---
+
+## 🌐 Эндпоинты
+
+- `GET /api/containers?q=ABC` — поиск по номеру
+- `GET /api/containers` — первые 50 контейнеров
+- `GET /api/containers/by-cost?min=100&max=200` — по диапазону цены
+- `POST /api/containers` — добавить контейнер (авторизация нужна)
+
+> Все запросы требуют HTTP Basic Auth.
+
+---
+
+## 📄 Пример POST
+```json
+{
+  "container_number": "CXXU7788345",
+  "cost": 150.00
+}
+```
+
+Формат номера: **3 латинские буквы + U + 7 цифр**.
+
+---
+
+Готово. API доступно на [http://localhost:8000/docs](http://localhost:8000/docs)
